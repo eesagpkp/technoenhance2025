@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 740px;
+  height: 140px;
+  transform: translate(-50%, -50%);
+}
+
+.path {
+  stroke-dashoffset: 0;
+  stroke-dasharray: 100%;
+  animation: dash 4.5s linear;
+}
+
+.path:nth-child(10) {
+  animation-delay: -2s;
+}
+.path:nth-child(9) {
+  animation-delay: -1.75s;
+}
+.path:nth-child(8) {
+  animation-delay: -1.5s;
+}
+.path:nth-child(7) {
+  animation-delay: -1.5s;
+}
+.path:nth-child(6) {
+  animation-delay: -1.25s;
+}
+.path:nth-child(5) {
+  animation-delay: -1s;
+}
+.path:nth-child(4) {
+  animation-delay: -0.75s;
+}
+.path:nth-child(3) {
+  animation-delay: -0.5s;
+}
+.path:nth-child(2) {
+  animation-delay: -0.25s;
+}
+
+@keyframes dash {
+  0%,
+  50% {
+    stroke-dashoffset: 100%;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+</style>
+<body>
+  <svg viewBox="0 0 300 50" xmlns="http://www.w3.org/2000/svg">
+  <style>
+      .path {
+          fill: none;
+          stroke-width: 2;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+          stroke-dasharray: 200;
+          stroke-dashoffset: 200;
+          animation: draw 2s linear forwards;
+      }
+      .techno {
+          animation: fadeIn 2s ease-in-out forwards;
+      }
+      .enhance {
+          animation: fadeIn 2s ease-in-out forwards;
+          animation-delay: 2s;
+      }
+      @keyframes draw {
+          to {
+              stroke-dashoffset: 0;
+          }
+      }
+      @keyframes fadeIn {
+          0% { opacity: 0; transform: translateY(10px); }
+          100% { opacity: 1; transform: translateY(0); }
+      }
+  </style>
+  <g transform="translate(20, 25)" font-size="24" font-family="Arial" font-weight="bold">
+      <g class="techno">
+          <text x="0" y="0" fill="none" stroke="#1E90FF" stroke-width="2" class="path">T</text>
+          <text x="20" y="0" fill="none" stroke="#4682B4" stroke-width="2" class="path">E</text>
+          <text x="40" y="0" fill="none" stroke="#5F9EA0" stroke-width="2" class="path">C</text>
+          <text x="60" y="0" fill="none" stroke="#87CEEB" stroke-width="2" class="path">H</text>
+          <text x="80" y="0" fill="none" stroke="#00BFFF" stroke-width="2" class="path">N</text>
+          <text x="100" y="0" fill="none" stroke="#1E90FF" stroke-width="2" class="path">O</text>
+      </g>
+      <g class="enhance">
+          <text x="130" y="0" fill="none" stroke="#4682B4" stroke-width="2" class="path">E</text>
+          <text x="150" y="0" fill="none" stroke="#5F9EA0" stroke-width="2" class="path">N</text>
+          <text x="170" y="0" fill="none" stroke="#87CEEB" stroke-width="2" class="path">H</text>
+          <text x="190" y="0" fill="none" stroke="#00BFFF" stroke-width="2" class="path">A</text>
+          <text x="210" y="0" fill="none" stroke="#1E90FF" stroke-width="2" class="path">N</text>
+          <text x="230" y="0" fill="none" stroke="#4682B4" stroke-width="2" class="path">C</text>
+          <text x="250" y="0" fill="none" stroke="#5F9EA0" stroke-width="2" class="path">E</text>
+      </g>
+  </g>
+</svg>
+
+
+
+</body>
+</html>

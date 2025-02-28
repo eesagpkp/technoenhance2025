@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", serif;
+}
+
+.back-button-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #45a049;
+}
+
+.gallery-hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(180deg, #2a2a2a, #2a2a2a);
+    color: white;
+    margin-top: 21px;
+
+}
+
+.gallery-hero h1 {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.gallery-hero p {
+    font-size: 18px;
+    opacity: 0.8;
+}
+
+.gallery-container {
+    column-count: 4; 
+    column-gap: 15px;
+    padding: 20px;
+    width: 100%;
+    margin: auto;
+}
+
+/* Gallery Items */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    break-inside: avoid;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Different Image Sizes */
+.wide {
+    grid-column: span 2;
+}
+
+.tall {
+    grid-row: span 2;
+}
+
+/* Hover Effect */
+.gallery-item:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Fade-in Animation */
+.gallery-item {
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .gallery-container {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .gallery-container {
+        column-count: 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        column-count: 2;
+    }
+    .gallery-container{
+        padding: 15px 3px;
+    }
+
+    .row img{
+        width: 70px;
+        height: 70px;
+    }
+}
+

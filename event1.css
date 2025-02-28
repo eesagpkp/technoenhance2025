@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.tracker {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: absolute;
+    top: 20px;
+    width: 100%;
+}
+
+.step {
+    padding: 10px;
+    font-size: 1.2rem;
+    margin: 0 15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0.6;
+}
+
+.step.active {
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    transform: scale(1.2);
+    opacity: 1;
+}
+
+.event-info {
+    padding-top: 60px;
+    text-align: center;
+}
+
+.event-point {
+    display: none;
+    padding: 40px;
+}
+
+.event-point h2, .event-point h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.event-point ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.event-point ul li {
+    margin-bottom: 10px;
+}
+
+.event-point img {
+    width: 80%;
+    max-width: 800px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.event-point img:hover {
+    transform: scale(1.05);
+}
+
+/* CSS animation to reveal points step-by-step */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Display each event point with a delay */
+.event-point:nth-child(1) {
+    display: block;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 0s;
+}
+
+.event-point:nth-child(2) {
+    display: block;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 3s; /* Delay after first section */
+}
+
+.event-point:nth-child(3) {
+    display: block;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 6s; /* Delay after second section */
+}
+
+.event-point:nth-child(4) {
+    display: block;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 9s; /* Delay after third section */
+}
+
+.event-point:nth-child(5) {
+    display: block;
+    animation: fadeIn 1s ease-in-out forwards;
+    animation-delay: 12s; /* Delay after fourth section */
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    .step {
+        font-size: 1rem;
+    }
+
+    .event-point h2, .event-point h3 {
+        font-size: 1.5rem;
+    }
+}
