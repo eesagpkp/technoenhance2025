@@ -127,3 +127,27 @@ function autoSlide() {
 // Initialize slideshow
 showSlide(slideIndex);
 setInterval(autoSlide, 3000); // Auto change slide every 3 seconds
+
+let scrollContainer = document.getElementById("scrollContainer");
+        let scrollBtn = document.getElementById("scrollBtn");
+        let progressCircle = document.querySelector("circle");
+        let circumference = 2 * Math.PI * 30;
+
+        window.onscroll = function () {
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            let scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrollPercent = (scrollTop / scrollHeight) * 100;
+            let offset = circumference - (scrollPercent / 100) * circumference;
+
+            if (scrollTop > 100) {
+                scrollContainer.style.display = "block";
+                progressCircle.style.strokeDashoffset = offset;
+            } else {
+                scrollContainer.style.display = "none";
+            }
+        };
+
+        scrollBtn.onclick = function () {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        };
+
