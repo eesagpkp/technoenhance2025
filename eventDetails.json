@@ -24,5 +24,36 @@
       "round3": "z"
     },
     "eventRules": "z"
+  },
+  {
+    "eventName": "code craft",
+    "eventDate": "2025-03-06",
+    "eventTime": "23:07",
+    "coordinators": [
+      {
+        "name": "prathmesh",
+        "phone": "1234567890"
+      },
+      {
+        "name": "prathmesh",
+        "phone": "12345677800"
+      }
+    ],
+    "facultyCoordinators": [
+      "abc",
+      "123456789900"
+    ],
+    "rounds": "3",
+    "roundInfo": {
+      "round1": "jmfsgvkbcxkvkjzszulysi;ozchxlbk.jv,jzsck.hlk/xn, bx,jkn, ",
+      "round2": "iuiagskydzcbx,hjhuslgickzxnj",
+      "round3": "ugilwdaskbchxasulbzcxkj.,"
+    },
+    "eventRules": "wiguldaskbcjzxyafsoih;cnzxk",
+    "participants": {
+      "minParticipants": "1",
+      "maxParticipants": "2",
+      "totalParticipants": "100"
+    }
   }
 ]
