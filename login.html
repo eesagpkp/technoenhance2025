@@ -108,7 +108,7 @@
             
             if (user) {
                 localStorage.setItem("loggedInUser", JSON.stringify(user));
-                window.location.href = "user-info.html";
+                window.location.href = "form.html";
             } else {
                 error.innerText = "Invalid Username or Password";
                 currentCaptcha = generateCaptcha();
