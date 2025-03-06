@@ -333,11 +333,10 @@
             // Create a JSON object with the form data
             const newData = JSON.stringify([eventDetails], null, 2);
 
-            // GitHub Personal Access Token (DO NOT expose in production)
-            const githubToken = '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';  // Replace with your GitHub token securely
+            const tkn = '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'; 
 
             // Commit the data to GitHub using the GitHub API
-            commitToGitHub(repoOwner, repoName, filePath, newData, githubToken);
+            commitToGitHub(repoOwner, repoName, filePath, newData, tkn);
         });
 
         // Function to commit data to GitHub
