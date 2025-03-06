@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background: #28a745;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        .hidden {
+            display: none;
+        }
+        #captcha {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 3px;
+            background: #ddd;
+            padding: 5px;
+            margin: 10px 0;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
+        
+        <p id="captcha"></p>
+        <input type="text" id="captchaInput" placeholder="Enter CAPTCHA">
+        
+        <button onclick="login()">Login</button>
+        <p id="error" style="color: red;"></p>
+    </div>
+    
+    <script>
+        const users = [
+            { username: "shardul-president", password: "pass1", name: "John Doe", email: "john@example.com", role: "Admin" },
+            { username: "prathmesh-treasure", password: "pass2", name: "Jane Smith", email: "jane@example.com", role: "Editor" },
+            { username: "user3", password: "pass3", name: "Alice Brown", email: "alice@example.com", role: "Viewer" },
+            { username: "user4", password: "pass4", name: "Bob Green", email: "bob@example.com", role: "User" },
+            { username: "user5", password: "pass5", name: "Charlie White", email: "charlie@example.com", role: "Admin" },
+            { username: "user6", password: "pass6", name: "David Black", email: "david@example.com", role: "Editor" },
+            { username: "user7", password: "pass7", name: "Emily Rose", email: "emily@example.com", role: "User" },
+            { username: "user8", password: "pass8", name: "Frank Wilson", email: "frank@example.com", role: "Viewer" },
+            { username: "user9", password: "pass9", name: "Grace Thomas", email: "grace@example.com", role: "Editor" },
+            { username: "user10", password: "pass10", name: "Harry Moore", email: "harry@example.com", role: "User" },
+            { username: "user11", password: "pass11", name: "Ivy Taylor", email: "ivy@example.com", role: "Admin" }
+        ];
+        
+        function generateCaptcha() {
+            let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById("captcha").innerText = captcha;
+            return captcha;
+        }
+        
+        let currentCaptcha = generateCaptcha();
+        
+        function login() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const captchaInput = document.getElementById("captchaInput").value;
+            const error = document.getElementById("error");
+            
+            if (captchaInput !== currentCaptcha) {
+                error.innerText = "CAPTCHA incorrect. Try again.";
+                currentCaptcha = generateCaptcha();
+                return;
+            }
+            
+            const user = users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
+                window.location.href = "user-info.html";
+            } else {
+                error.innerText = "Invalid Username or Password";
+                currentCaptcha = generateCaptcha();
+            }
+        }
+    </script>
+</body>
+</html>
