@@ -8,6 +8,7 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -38,11 +39,48 @@
         <p><strong>Role:</strong> <span id="userRole"></span></p>
         <button onclick="logout()">Logout</button>
     </div>
-    
+    <h1>Submit Your Event detail</h1>
+    <form id="dataForm">
+        <label for="name">Event name:</label>
+        <input type="text" id="name" name="name" required><br><br>
+        
+        <label for="date">Event Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <label for="time">Event Time:</label>
+        <input type="time" id="time" name="time" required><br><br>
+
+        <label for="minpart">Minimum Participants:</label>
+        <input type="number" id="minpart" name="minpart" required><br><br>
+
+        <label for="maxpart">Maximum Participants:</label>
+        <input type="number" id="maxpart" name="maxpart" required><br><br>
+
+        <label for="totpart">total Participants:</label>
+        <input type="number" id="totpart" name="totpart" required><br><br>
+
+        <label for="rounds">total rounds:</label>
+        <input type="number" id="rounds" name="rounds" required><br><br>
+
+        <label for="1round">first round info.:</label>
+        <textarea name="1round" id="1round"></textarea><br><br>
+
+        <label for="2round">second round info.:</label>
+        <textarea name="2round" id="2round"></textarea><br><br>
+
+        <label for="3round">third round info.:</label>
+        <textarea name="3round" id="3round"></textarea><br><br>
+
+        <label for="rules">rules:</label>
+        <textarea name="rules" id="rules"></textarea><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
     <script>
         const user = JSON.parse(localStorage.getItem("loggedInUser"));
         if (!user) {
-            window.location.href = "index.html";
+            window.location.href = "login.html";
         } else {
             document.getElementById("userName").innerText = user.name;
             document.getElementById("userEmail").innerText = user.email;
@@ -52,6 +90,103 @@
         function logout() {
             localStorage.removeItem("loggedInUser");
             window.location.href = "login.html";
+        }
+
+         document.getElementById('dataForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the form from submitting the default way
+
+            const name = document.getElementById('name').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
+            const minpart = document.getElementById('minpart').value;
+            const maxpart = document.getElementById('maxpart').value;
+            const totpart = document.getElementById('totpart').value;
+            const rounds = document.getElementById('rounds').value;
+            const round1 = document.getElementById('1round').value;
+            const round2 = document.getElementById('2round').value;
+            const round3 = document.getElementById('3round').value;
+            const rules = document.getElementById('rules').value;
+
+            const data = {
+                name: name,
+                date: date,
+                time: time,
+                Number: minpart,
+                Number: maxpart,
+                Number: totpart,
+                Number: rounds,
+                Text: round1,
+                Text: round2,
+                Text: round3,
+                Text: rules
+            };
+
+            // GitHub repository information
+            const repoOwner = 'eesagpkp';
+            const repoName = 'technoenhance2025';
+            const filePath = 'data.json';  // Path to the file in your repo
+
+            // Create a JSON object with the form data
+            const newData = JSON.stringify([data], null, 11);
+
+            // GitHub Personal Access Token (DO NOT expose in production - this is just for demonstration)
+            const githubToken = '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';  // Replace with your GitHub token
+
+            // Commit the data to GitHub using the GitHub API
+            commitToGitHub(repoOwner, repoName, filePath, newData, githubToken);
+        });
+
+        // Function to commit data to GitHub
+        function commitToGitHub(owner, repo, path, newContent, token) {
+            const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+
+            // Fetch the existing content of the file, if it exists
+            fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Accept': 'application/vnd.github.v3+json',
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                let existingData = [];
+
+                if (data.content) {
+                    // If the file exists, decode and parse the existing content
+                    existingData = JSON.parse(atob(data.content)); // Decode base64 content
+                }
+
+                // Append the new data to the existing content
+                existingData.push(JSON.parse(newContent)[0]);
+
+                // Prepare the data to be committed
+                const updatedContent = JSON.stringify(existingData, null, 11); // Reformat the updated content
+                const commitData = {
+                    message: 'Add new form data',
+                    content: btoa(updatedContent), // Encode updated content to base64
+                    sha: data.sha || '', // Use the file SHA if the file exists
+                };
+
+                // Push the content (commit) to GitHub
+                return fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json',
+                    },
+                    body: JSON.stringify(commitData),
+                });
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('File committed to GitHub:', data);
+                alert('Data committed to GitHub!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error committing to GitHub.');
+            });
         }
     </script>
 </body>
