@@ -1,85 +1,262 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
+    <title>Submit Event Details</title>
     <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body and Background */
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
         }
+
+        /* Container for the Form */
         .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #444;
+        }
+
+        /* Input fields and Labels */
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Responsive Styles */
+        @media (min-width: 600px) {
+            .container {
+                padding: 30px;
+            }
+
+            button {
+                width: auto;
+                margin-top: 10px;
+            }
+        }
+
+        /* Form Fields Flexbox */
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .form-group label, .form-group input {
+            flex: 1 1 calc(50% - 20px);
+        }
+
+        .form-group input[type="number"] {
+            max-width: 200px;
+        }
+
+        /* Round Information visibility */
+        #round2Info, #round3Info {
+            display: none;
+        }
+
+        .container1 {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 100%;
+            max-width: 600px;
         }
-        button {
+
+        h1, h2, p {
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .button1 {
             background: #dc3545;
             color: white;
-            padding: 10px;
+            padding: 10px 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            max-width: 200px;
+            margin-top: 20px;
         }
+
+        .button1:hover {
+            background-color: #c82333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            
+
+            .container1 {
+                padding: 15px;
+            }
+
+            .button1 {
+                width: 100%;
+                max-width: none;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="container" id="userInfoContainer">
-        <h2>Welcome, <span id="userName"></span></h2>
-        <p><strong>Email:</strong> <span id="userEmail"></span></p>
-        <p><strong>Role:</strong> <span id="userRole"></span></p>
-        <button onclick="logout()">Logout</button>
+    <div class="container">
+        <div class="container1" id="userInfoContainer">
+            <h2>Welcome, <span id="userName"></span></h2>
+            <p><strong>Email:</strong> <span id="userEmail"></span></p>
+            <p><strong>Role:</strong> <span id="userRole"></span></p>
+            <button class="button1" onclick="logout()">Logout</button>
+        </div>
+        <h1>Submit Event Details</h1>
+        <form id="dataForm">
+            <!-- Event Information -->
+            <label for="eventName">Event Name:</label>
+            <input type="text" id="eventName" name="eventName" required><br><br>
+
+            <div class="form-group">
+                <div>
+                    <label for="eventDate">Event Date:</label>
+                    <input type="date" id="eventDate" name="eventDate" required>
+                </div>
+
+                <div>
+                    <label for="eventTime">Event Time:</label>
+                    <input type="time" id="eventTime" name="eventTime" required>
+                </div>
+            </div>
+
+            <!-- Coordinator Information -->
+            <div class="form-group">
+                <div>
+                    <label for="coordinator1">Coordinator 1 Name:</label>
+                    <input type="text" id="coordinator1" name="coordinator1" required>
+                </div>
+                <div>
+                    <label for="coordinator1Phone">Coordinator 1 Phone Number:</label>
+                    <input type="tel" id="coordinator1Phone" name="coordinator1Phone" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="coordinator2">Coordinator 2 Name:</label>
+                    <input type="text" id="coordinator2" name="coordinator2" required>
+                </div>
+                <div>
+                    <label for="coordinator2Phone">Coordinator 2 Phone Number:</label>
+                    <input type="tel" id="coordinator2Phone" name="coordinator2Phone" required>
+                </div>
+            </div>
+
+            <!-- Faculty Coordinator Information -->
+            <div class="form-group">
+                <div>
+                    <label for="facultyCoordinator1">Faculty Coordinator 1 Name:</label>
+                    <input type="text" id="facultyCoordinator1" name="facultyCoordinator1" required>
+                </div>
+                <div>
+                    <label for="facultyCoordinator2">Faculty Coordinator 2 Name:</label>
+                    <input type="text" id="facultyCoordinator2" name="facultyCoordinator2" required>
+                </div>
+            </div>
+
+            <!-- Event Rounds -->
+            <label for="rounds">Number of Rounds:</label>
+            <input type="number" id="rounds" name="rounds" min="1" max="3" required><br><br>
+
+            <div id="roundsInfo">
+                <div>
+                    <label for="round1Info">Information for Round 1:</label>
+                    <textarea id="round1Info" name="round1Info" required></textarea><br><br>
+
+                    <label for="round2Info">Information for Round 2:</label>
+                    <textarea id="round2Info" name="round2Info"></textarea><br><br>
+
+                    <label for="round3Info">Information for Round 3:</label>
+                    <textarea id="round3Info" name="round3Info"></textarea><br><br>
+                </div>
+            </div>
+
+            <!-- Event Rules -->
+            <label for="eventRules">Event Rules:</label>
+            <textarea id="eventRules" name="eventRules" required></textarea><br><br>
+
+            <!-- Participant Information -->
+            <div class="form-group">
+                <div>
+                    <label for="minParticipants">Minimum Participants:</label>
+                    <input type="number" id="minParticipants" name="minParticipants" required><br><br>
+                </div>
+
+                <div>
+                    <label for="maxParticipants">Maximum Participants:</label>
+                    <input type="number" id="maxParticipants" name="maxParticipants" required><br><br>
+                </div>
+
+                <div>
+                    <label for="totalParticipants">Total Participants:</label>
+                    <input type="number" id="totalParticipants" name="totalParticipants" required><br><br>
+                </div>
+            </div>
+
+            <button type="submit">Submit</button>
+        </form>
     </div>
-    <h1>Submit Your Event detail</h1>
-    <form id="dataForm">
-        <label for="name">Event name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        
-        <label for="date">Event Date:</label>
-        <input type="date" id="date" name="date" required><br><br>
-
-        <label for="time">Event Time:</label>
-        <input type="time" id="time" name="time" required><br><br>
-
-        <label for="minpart">Minimum Participants:</label>
-        <input type="number" id="minpart" name="minpart" required><br><br>
-
-        <label for="maxpart">Maximum Participants:</label>
-        <input type="number" id="maxpart" name="maxpart" required><br><br>
-
-        <label for="totpart">total Participants:</label>
-        <input type="number" id="totpart" name="totpart" required><br><br>
-
-        <label for="rounds">total rounds:</label>
-        <input type="number" id="rounds" name="rounds" required><br><br>
-
-        <label for="1round">first round info.:</label>
-        <textarea name="1round" id="1round"></textarea><br><br>
-
-        <label for="2round">second round info.:</label>
-        <textarea name="2round" id="2round"></textarea><br><br>
-
-        <label for="3round">third round info.:</label>
-        <textarea name="3round" id="3round"></textarea><br><br>
-
-        <label for="rules">rules:</label>
-        <textarea name="rules" id="rules"></textarea><br><br>
-
-        <button type="submit">Submit</button>
-    </form>
 
     <script>
-        const user = JSON.parse(localStorage.getItem("loggedInUser"));
+             const user = JSON.parse(localStorage.getItem("loggedInUser"));
         if (!user) {
             window.location.href = "login.html";
         } else {
@@ -87,65 +264,77 @@
             document.getElementById("userEmail").innerText = user.email;
             document.getElementById("userRole").innerText = user.role;
         }
-        
+
         function logout() {
             localStorage.removeItem("loggedInUser");
             window.location.href = "login.html";
         }
+        // Show or hide round inputs based on the number of rounds
+        document.getElementById('rounds').addEventListener('input', function() {
+            const rounds = parseInt(this.value);
+            const round2Info = document.getElementById('round2Info');
+            const round3Info = document.getElementById('round3Info');
+            
+            if (rounds >= 2) {
+                round2Info.style.display = 'block';
+            } else {
+                round2Info.style.display = 'none';
+            }
 
-         document.getElementById('dataForm').addEventListener('submit', function(e) {
+            if (rounds === 3) {
+                round3Info.style.display = 'block';
+            } else {
+                round3Info.style.display = 'none';
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('dataForm').addEventListener('submit', function(e) {
             e.preventDefault(); // Prevent the form from submitting the default way
 
-          /*  const name = document.getElementById('name').value;
-            const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
-            const minpart = document.getElementById('minpart').value;
-            const maxpart = document.getElementById('maxpart').value;
-            const totpart = document.getElementById('totpart').value;
-            const rounds = document.getElementById('rounds').value;
-            const round1 = document.getElementById('1round').value;
-            const round2 = document.getElementById('2round').value;
-            const round3 = document.getElementById('3round').value;
-            const rules = document.getElementById('rules').value;
-
-            const data = {
-                name: name,
-                date: date,
-                time: time,
-                Number: minpart,
-                Number: maxpart,
-                Number: totpart,
-                Number: rounds,
-                Text: round1,
-                Text: round2,
-                Text: round3,
-                Text: rules
-            };*/
-
-             const data = {
-                eventName: document.getElementById('name').value,
-                eventDate: document.getElementById('date').value,
-                eventTime: document.getElementById('time').value,
-                minParticipants: document.getElementById('minpart').value,
-                maxParticipants: document.getElementById('maxpart').value,
-                totalParticipants: document.getElementById('totpart').value,
-                totalRounds: document.getElementById('rounds').value,
-                firstRound: document.getElementById('round1').value,
-                secondRound: document.getElementById('round2').value,
-                thirdRound: document.getElementById('round3').value,
-                eventRules: document.getElementById('rules').value
+            // Collect form data
+            const eventDetails = {
+                eventName: document.getElementById('eventName').value,
+                eventDate: document.getElementById('eventDate').value,
+                eventTime: document.getElementById('eventTime').value,
+                coordinators: [
+                    {
+                        name: document.getElementById('coordinator1').value,
+                        phone: document.getElementById('coordinator1Phone').value
+                    },
+                    {
+                        name: document.getElementById('coordinator2').value,
+                        phone: document.getElementById('coordinator2Phone').value
+                    }
+                ],
+                facultyCoordinators: [
+                    document.getElementById('facultyCoordinator1').value,
+                    document.getElementById('facultyCoordinator2').value
+                ],
+                rounds: document.getElementById('rounds').value,
+                roundInfo: {
+                    round1: document.getElementById('round1Info').value,
+                    round2: document.getElementById('round2Info').value,
+                    round3: document.getElementById('round3Info').value
+                },
+                eventRules: document.getElementById('eventRules').value,
+                participants: {
+                    minParticipants: document.getElementById('minParticipants').value,
+                    maxParticipants: document.getElementById('maxParticipants').value,
+                    totalParticipants: document.getElementById('totalParticipants').value
+                }
             };
-             
+
             // GitHub repository information
             const repoOwner = 'eesagpkp';
             const repoName = 'technoenhance2025';
-            const filePath = 'data.json';  // Path to the file in your repo
+            const filePath = 'eventDetails.json';  // Path to the file in your repo
 
             // Create a JSON object with the form data
-            const newData = JSON.stringify([data], null, 11);
+            const newData = JSON.stringify([eventDetails], null, 2);
 
-            // GitHub Personal Access Token (DO NOT expose in production - this is just for demonstration)
-            const githubToken = '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';  // Replace with your GitHub token
+            // GitHub Personal Access Token (DO NOT expose in production)
+            const githubToken = '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';  // Replace with your GitHub token securely
 
             // Commit the data to GitHub using the GitHub API
             commitToGitHub(repoOwner, repoName, filePath, newData, githubToken);
@@ -176,9 +365,9 @@
                 existingData.push(JSON.parse(newContent)[0]);
 
                 // Prepare the data to be committed
-                const updatedContent = JSON.stringify(existingData, null, 11); // Reformat the updated content
+                const updatedContent = JSON.stringify(existingData, null, 2); // Reformat the updated content
                 const commitData = {
-                    message: 'Add new form data',
+                    message: 'Add new event details',
                     content: btoa(updatedContent), // Encode updated content to base64
                     sha: data.sha || '', // Use the file SHA if the file exists
                 };
@@ -196,7 +385,7 @@
             .then(response => response.json())
             .then(data => {
                 console.log('File committed to GitHub:', data);
-                alert('Data committed to GitHub!');
+                alert('Event details committed to GitHub!');
             })
             .catch(error => {
                 console.error('Error:', error);
