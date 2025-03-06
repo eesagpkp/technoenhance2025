@@ -1,0 +1,28 @@
+[
+  {
+    "eventName": "ass",
+    "eventDate": "2025-03-06",
+    "eventTime": "22:59",
+    "coordinators": [
+      {
+        "name": "a",
+        "phone": "a"
+      },
+      {
+        "name": "a",
+        "phone": "s"
+      }
+    ],
+    "facultyCoordinators": [
+      "a",
+      "a"
+    ],
+    "rounds": "3",
+    "roundInfo": {
+      "round1": "z",
+      "round2": "z",
+      "round3": "z"
+    },
+    "eventRules": "z"
+  }
+]
