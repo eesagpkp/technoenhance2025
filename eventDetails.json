@@ -55,5 +55,36 @@
       "maxParticipants": "2",
       "totalParticipants": "100"
     }
+  },
+  {
+    "eventName": "abc",
+    "eventDate": "2025-03-07",
+    "eventTime": "07:41",
+    "coordinators": [
+      {
+        "name": "a",
+        "phone": "s"
+      },
+      {
+        "name": "a",
+        "phone": "S"
+      }
+    ],
+    "facultyCoordinators": [
+      "abc",
+      "cdc"
+    ],
+    "rounds": "2",
+    "roundInfo": {
+      "round1": "2",
+      "round2": "2",
+      "round3": ""
+    },
+    "eventRules": "2",
+    "participants": {
+      "minParticipants": "2",
+      "maxParticipants": "2",
+      "totalParticipants": "2"
+    }
   }
 ]
